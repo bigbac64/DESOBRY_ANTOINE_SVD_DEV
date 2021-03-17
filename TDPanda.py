@@ -43,10 +43,10 @@ csv[csv["prod_cost"].isin(["unknown"])]
 csv.isnull().sum()
 
 
-# In[8]:
+# In[32]:
 
 
-csv.groupby(["warranty"]).first()
+csv.groupby(["warranty", "quality"]).first()
 
 
 # In[9]:
@@ -61,10 +61,10 @@ csv["warranty"] = csv["warranty"].apply(lambda x: x[0])
 csv.groupby(["warranty"]).first()
 
 
-# In[21]:
+# In[34]:
 
 
-csv.groupby(pd.cut(csv["price"], [0, 300,500,1000])).mean().loc[:,["capacity", "failure_rate", "margin","market_share", "attractiveness"]]
+csv.groupby(pd.cut(csv["price"], [0, 300,500,float("inf")])).mean().loc[:,["capacity", "failure_rate", "margin","market_share", "attractiveness"]]
 
 
 # In[23]:
